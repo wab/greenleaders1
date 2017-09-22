@@ -1,0 +1,24 @@
+// retrieve color from $colors map #ie. `color(base, primary)`
+@function color($color-name, $color-variant:null) {
+  // color variant is optional
+  @if ($color-variant != null) {
+    // map inception
+    @return map-get(map-get($colors, $color-name), $color-variant);
+  } @else {
+    @return map-get($colors, $color-name);
+  }
+}
+
+%nobullet {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin position($top: 0, $right: auto, $bottom: auto, $left: 0) {
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+  right: $right;
+  top: $top;
+}

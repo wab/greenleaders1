@@ -1,0 +1,29 @@
+// base color defs
+$color-primary: #15afa6;
+// color variable map
+$colors: (
+  white: #fff,
+  black: #333,
+  background: #fff,
+  text: #333,
+  primary: (
+    base: $color-primary,
+    light: lighten($color-primary, 10%),
+    dark: darken($color-primary, 10%),
+    trans: transparentize($color-primary, 0.5)
+  ),
+  palette: (
+    purple: #8d549e,
+    blue: $color-primary,
+    green: #56aa4c,
+    yellow: #f9b61c,
+    red: #a3012b,
+    orange: #e96521,
+    pink: #c80d77,
+  ),
+  grey: (
+    base: #162637,
+    dark: #0d1823,
+    light: #e9edf2,
+  )
+);
