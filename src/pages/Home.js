@@ -4,14 +4,11 @@ import { connect } from "react-redux";
 import { fetchPosts } from '../actions/index';
 
 class Home extends Component {
-
   componentWillMount() {
     this.props.fetchPosts();
 
   }
-
   render() {
-    console.log(this.props.posts)
     return (
       <div>
         <h2>Home</h2>

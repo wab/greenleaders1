@@ -1,5 +1,5 @@
 import * as Home from './Home';
 import * as About from './About';
-import * as Category from './Category';
+import * as Topics from './Topics';
 
-export default {Home, About, Category};
+export {Home, About, Topics};
