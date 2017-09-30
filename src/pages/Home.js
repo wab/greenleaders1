@@ -2,6 +2,7 @@ import React, {Component}  from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchPosts } from '../actions/index';
+import ArticleList from '../components/ArticleList';
 
 class Home extends Component {
   componentWillMount() {
@@ -12,9 +13,7 @@ class Home extends Component {
     return (
       <div>
         <h2>Home</h2>
-        <ul>
-          {this.props.posts.map((post, i) => <li key={i}>{post.fields.title}</li> )}
-        </ul>
+        <ArticleList posts={this.props.posts} />
       </div>
     );
   }

@@ -3,21 +3,32 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Topics from './pages/Topics';
-import Article from './components/Article';
 import Header from './components/Header';
+
+import routes from './routes';
+
+// wrap <Route> and use this everywhere instead, then when
+// sub routes are added to any route it'll work
+const RouteWithSubRoutes = (route) => (
+  <Route path={route.path} excat={route.excat} render={props => (
+    // pass the sub-routes down to keep nesting
+    <route.component {...props} routes={route.routes}/>
+  )}/>
+)
 
 const App = () => (
   <Router>
     <div className="App">
       <Header />
       <main className="mainwrapper">
-        <Route exact path="/" component={Home}/>
-        <Route path="/about" component={About}/>
-        <Route path="/topics" component={Topics}/>
-        <Route path="article/:postId" component={Article}/>
+        {routes.map((route, index) => (
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.component}
+          />
+        ))}
       </main>
     </div>
   </Router>

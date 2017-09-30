@@ -12,7 +12,7 @@ const API_TOKEN =
 
 export function fetchPosts(rubriqueId, slug) {
   let url = `${API_BASE_URL}/spaces/${API_SPACE_ID}/entries?access_token=${API_TOKEN}&include=2&content_type=article${!!rubriqueId
-    ? `&fields.rubrique.sys.id=${rubriqueId}`
+    ? `&fields.rubrique.fields.slug=${rubriqueId}`
     : ''}${!!slug
       ? `&fields.slug=${slug}`
       : ''}&order=sys.createdAt`;
@@ -32,6 +32,7 @@ export function fetchPost(id) {
     payload: request
   };
 }
+
 export function fetchAsset(id) {
   const assets = axios.get(
     `${API_BASE_URL}/spaces/${API_SPACE_ID}/assets/${id}?access_token=${API_TOKEN}`
@@ -42,12 +43,13 @@ export function fetchAsset(id) {
     payload: assets
   };
 }
-export const fetchCategory = () => {
-  const categories = axios.get(
-    `${API_BASE_URL}/spaces/${API_SPACE_ID}/entries?access_token=${API_TOKEN}&content_type=category`
-  );
+export const fetchCategories = (slug) => {
+  let url = `${API_BASE_URL}/spaces/${API_SPACE_ID}/entries?access_token=${API_TOKEN}&include=2&content_type=category${!!slug
+    ? `&fields.slug=${slug}`
+    : ''}`;
+  const request = axios.get(url);
   return {
-    type: FETCH_POSTS,
-    categories
+    type: FETCH_CATEGORIES,
+    payload: request
   };
 };
